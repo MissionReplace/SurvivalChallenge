@@ -116,11 +116,7 @@ public class TBackupManager
     public void copyDir(File quelle, File ziel) throws FileNotFoundException, IOException {
 		
 		File[] files = quelle.listFiles();
-		File newFile = null; // in diesem Objekt wird für jedes File der Zielpfad gespeichert.
-				     // 1. Der alte Zielpfad
-				     // 2. Das systemspezifische Pfadtrennungszeichen
-				     // 3. Der Name des aktuellen Ordners/der aktuellen Datei
-		ziel.mkdirs();	     // erstellt alle benötigten Ordner
+		File newFile = null; 
 		if (files != null) {
 			for (int i = 0; i < files.length; i++) {
 					newFile = new File(ziel.getAbsolutePath() + System.getProperty("file.separator") + files[i].getName());
@@ -138,8 +134,8 @@ public class TBackupManager
 		BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
 		BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(ziel, true));
 		int bytes = 0;
-		while ((bytes = in.read()) != -1) { // Datei einlesen
-			out.write(bytes); // Datei schreiben
+		while ((bytes = in.read()) != -1) {
+			out.write(bytes); 
 		}
 		in.close();
 		out.close();
