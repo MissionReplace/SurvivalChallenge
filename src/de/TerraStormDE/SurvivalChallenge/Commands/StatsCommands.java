@@ -66,20 +66,7 @@ public class StatsCommands implements CommandExecutor
             } else if(args[0].equalsIgnoreCase("top")){
                 if(p.hasPermission("sc.stats.top")){
                     String order = plugin.convertPath(TConfigPath.SETTINGS_STATS_TOP_ORDER).toString();
-                    TStatsType type = null;
-                    if(order.equalsIgnoreCase("kills")){
-                        type = TStatsType.KILL;
-                    } else if(order.equalsIgnoreCase("deaths")){
-                        type = TStatsType.DEATH;
-                    } else if(order.equalsIgnoreCase("games")){
-                        type = TStatsType.GAME;
-                    } else if(order.equalsIgnoreCase("wins")){
-                        type = TStatsType.WIN;
-                    } else if(order.equalsIgnoreCase("points")){
-                        type = TStatsType.POINT;
-                    } else {
-                        type = TStatsType.KILL;
-                    }
+                    TStatsType type = TStatsType.getBy(order);
                     
                     List<UserProfile> players = plugin.getStatsConnection().getTopPlayer(type, (int) plugin.convertPath(TConfigPath.SETTINGS_STATS_TOP_AMOUNT));
                     String space = "                    ";

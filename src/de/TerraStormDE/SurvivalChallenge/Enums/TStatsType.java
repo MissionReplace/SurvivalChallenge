@@ -29,5 +29,15 @@ public enum TStatsType
     public String getTableRow(){
         return row;
     }
+    public static TStatsType getBy(String name){
+        
+        for(TStatsType type : values()){
+            String t = type.toString().toLowerCase();
+            if((t + "s").equalsIgnoreCase(name) || t.equalsIgnoreCase(name)){
+                return type;
+            }
+        }
+        return KILL;
+    }
     
 }
