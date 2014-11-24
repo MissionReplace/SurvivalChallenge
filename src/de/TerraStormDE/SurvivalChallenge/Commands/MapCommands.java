@@ -291,7 +291,7 @@ public class MapCommands implements CommandExecutor
                     return true;
                 }
                 
-            /*} else if(args[0].equalsIgnoreCase("lbackup")){
+            } else if(args[0].equalsIgnoreCase("lbackup")){
                 if(p.hasPermission("sc.backup.load")){
                     if(args.length < 2){
                         p.sendMessage(plugin.getPrefix() + "§e/sc lbackup <arena>");
@@ -320,7 +320,7 @@ public class MapCommands implements CommandExecutor
                     plugin.getBackupManager().loadBackup(map.getBackup());
                     p.sendMessage(plugin.getPrefix() + "Backup geladen!");
                     return true;
-                }*/
+                }
             } else if(args[0].equalsIgnoreCase("check")){
                 if(p.hasPermission("sc.check")){
                     if(args.length == 2){
