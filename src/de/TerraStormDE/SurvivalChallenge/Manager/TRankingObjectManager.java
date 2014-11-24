@@ -29,6 +29,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class TRankingObjectManager
 {
     
+    
+    
     public static enum TRankingObjectType {
         
         RANKING_SIGN,
@@ -76,15 +78,17 @@ public class TRankingObjectManager
         /*TRankingSign.updateAll(Arrays.asList((TRankingObject[])TRankingSign.getRankingSigns()));
         TRankingHead.updateAll(Arrays.asList((TRankingObject[]) TRankingHead.getRankingHeads()));*/
         List<TRankingObject> h = new ArrayList<>();
+        List<TRankingObject> h2 = new ArrayList<>();
         
         for(TRankingHead trh : TRankingHead.getRankingHeads()){
             h.add(trh);
         }
         for(TRankingSign trs : TRankingSign.getRankingSigns()){
-            h.add(trs);
+            h2.add(trs);
         }
         
         TRankingObject.updateAll(h);
+        TRankingObject.updateAll(h2);
     }
     
     // World,x,y,z
@@ -105,7 +109,7 @@ public class TRankingObjectManager
     public TRankingObjectType toObjectType(String input){
         return TRankingObjectType.valueOf(input.split(";")[5]);
     }
-    public boolean existsRankingObject(int rank,TRankingObjectType type){
+    /*public boolean existsRankingObject(int rank,TRankingObjectType type){
         FileConfiguration cfg = YamlConfiguration.loadConfiguration(file);
         List<String> list = cfg.getStringList("objects");
         if(list == null){
@@ -117,7 +121,7 @@ public class TRankingObjectManager
             }
         }
         return false;
-    }
+    }*/
     public void removeRankingObjects(Location loc){
         FileConfiguration cfg = YamlConfiguration.loadConfiguration(file);
         List<String> list = cfg.getStringList("objects");
@@ -149,19 +153,10 @@ public class TRankingObjectManager
         removeRankingObjects(loc);
         list.add(toRankingString(loc, ranking_pos, type));
         if(type == TRankingObjectType.RANKING_HEAD){
-            TRankingHead head = TRankingHead.getbyRank(ranking_pos);
-            if(head != null){
-                head.setLocation(loc);
-            } else {
-                new TRankingHead(loc, ranking_pos);
-            }
+            //TRankingHead head = TRankingHead.getbyRank(ranking_pos);
+            new TRankingHead(loc, ranking_pos);
         } else if(type == TRankingObjectType.RANKING_SIGN){
-            TRankingSign sign = TRankingSign.getbyRank(ranking_pos);
-            if(sign != null){
-                sign.setLocation(loc);
-            } else {
-                new TRankingSign(loc, ranking_pos);
-            }
+            new TRankingSign(loc, ranking_pos);
         }
         
         cfg.set("objects", list);
