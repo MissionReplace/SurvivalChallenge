@@ -55,27 +55,21 @@ public abstract class TRankingObject
         }
         
         String order = SurvivalChallenge.getInstance().convertPath(TConfigPath.RANKING_ORDER_TYPE).toString();
-        TStatsType type = null;
-                    if(order.equalsIgnoreCase("kills")){
-                        type = TStatsType.KILL;
-                    } else if(order.equalsIgnoreCase("deaths")){
-                        type = TStatsType.DEATH;
-                    } else if(order.equalsIgnoreCase("games")){
-                        type = TStatsType.GAME;
-                    } else if(order.equalsIgnoreCase("wins")){
-                        type = TStatsType.WIN;
-                    } else if(order.equalsIgnoreCase("points")){
-                        type = TStatsType.POINT;
-                    } else {
-                        type = TStatsType.KILL;
-                    }
+        TStatsType type = TStatsType.getBy(order);
         
         List<UserProfile> players = stats.getTopPlayer(type, list[0].getRankingPos());
+        Bukkit.broadcastMessage(list[0].getRankingPos() + "");
         int current_head = 0;
         int current_sign = 0;
         int use = 0;
         
         for(TRankingObject ob : objects){
+            if(ob instanceof TRankingHead){
+                current_head = ob.getRankingPos()-1;
+            }
+            if(ob instanceof TRankingSign){
+                current_sign = ob.getRankingPos()-1;
+            }
             use = (ob instanceof TRankingHead ? current_head : current_sign);
             
             TObjectRestore restore = new TObjectRestore();
@@ -87,12 +81,7 @@ public abstract class TRankingObject
             
             
             ob.update(restore);
-            if(ob instanceof TRankingHead){
-                current_head++;
-            }
-            if(ob instanceof TRankingSign){
-                current_sign++;
-            }
+            
         }
     }
     /*public static void updateAll(){
@@ -124,7 +113,7 @@ public abstract class TRankingObject
         TRankingObject temp = null;
         for(int run = 0; run <= array.length;run++){
             for(int pos = 0; pos < array.length-1;pos++){
-                if(array[pos].getRankingPos() < array[pos+1].getRankingPos()){
+                if(array[pos].getRankingPos() <= array[pos+1].getRankingPos()){
                     
                     Bukkit.broadcastMessage("Sort");
                     temp = array[pos];
