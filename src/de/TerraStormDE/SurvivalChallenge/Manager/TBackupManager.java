@@ -115,6 +115,10 @@ public class TBackupManager
     }
     public void copyDir(File quelle, File ziel) throws FileNotFoundException, IOException {
 		
+        if(!ziel.exists()){
+            ziel.mkdirs();
+        }
+        
 		File[] files = quelle.listFiles();
 		File newFile = null; 
 		if (files != null) {
