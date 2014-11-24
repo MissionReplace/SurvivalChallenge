@@ -43,7 +43,6 @@ public enum TConfigPath {
     SETTINGS_MIN_PLAYER("settings.min_player",4),
     SETTINGS_MAX_PLAYER("settings.max_player",12),
     SETTNGS_GAME_LENGHT("settings.game_lenght",25),
-    SETTINGS_USE_TEAM_COLOR("settings.use_team_color",false),
     SETTINGS_LOBBY_COUNT("settings.lobby_count",60),
     
     SETTINGS_DEATHMATCH_GRACE_COUNT("settings.deathmatch_grace",10),
