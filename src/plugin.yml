@@ -1,0 +1,12 @@
+name: SurvivalChallenge
+author: TerraStormDE
+version: 1.0
+main: de.TerraStormDE.SurvivalChallenge.SurvivalChallenge
+
+commands:
+  sc:
+    usage: /<command>
+  stats:
+    usage: /<command>
+  modul:
+    usage: /<command>
