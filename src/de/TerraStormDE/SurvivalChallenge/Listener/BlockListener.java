@@ -6,6 +6,7 @@
 
 package de.TerraStormDE.SurvivalChallenge.Listener;
 
+import de.TerraStormDE.SurvivalChallenge.Enums.TGameStatus;
 import de.TerraStormDE.SurvivalChallenge.SurvivalChallenge;
 import de.TerraStormDE.SurvivalChallenge.Util.TBlockList;
 import java.util.ArrayList;
@@ -36,6 +37,12 @@ public class BlockListener implements Listener
     
     @EventHandler
     public void break_block(BlockBreakEvent e){
+        TGameStatus status = plugin.getGameManager().getCurrentGameStatus();
+        if(status == TGameStatus.BEFORE_LOBBY || status == TGameStatus.LOBBY){
+            e.setCancelled(true);
+            return;
+        }
+        
         if(!e.getPlayer().hasPermission("sc.break")){
             if(plugin.getBlockWhiteList() != null && plugin.getBlockWhiteList().containsBlock(e.getBlock().getType())){
                 e.setCancelled(false);
