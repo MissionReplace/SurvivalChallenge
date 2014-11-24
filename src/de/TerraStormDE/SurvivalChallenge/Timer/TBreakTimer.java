@@ -7,11 +7,13 @@
 package de.TerraStormDE.SurvivalChallenge.Timer;
 
 import de.TerraStormDE.SurvivalChallenge.Enums.TConfigPath;
-import de.TerraStormDE.SurvivalChallenge.SurvivalChallenge;
-import de.TerraStormDE.SurvivalChallenge.Util.TGamePlayer;
 import de.TerraStormDE.SurvivalChallenge.Enums.TGameStatus;
+import de.TerraStormDE.SurvivalChallenge.SurvivalChallenge;
+import de.TerraStormDE.SurvivalChallenge.Util.TBungeeUtil;
+import de.TerraStormDE.SurvivalChallenge.Util.TGamePlayer;
 import de.TerraStormDE.SurvivalChallenge.Util.TGameTimer;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 /**
  *
@@ -59,10 +61,10 @@ public class TBreakTimer extends TGameTimer
                 player.saveData();
             }
             
-            /*for(Player p : Bukkit.getOnlinePlayers()){
-                //TBungeeUtil.sendPlayer(p, plugin.convertPath(TConfigPath.SETTINGS_SERVER_FALLBACK).toString());
-                p.kickPlayer(plugin.getPrefix() + "§eDas Spiel ist zuende!");
-            }*/
+            for(Player p : Bukkit.getOnlinePlayers()){
+                TBungeeUtil.sendPlayer(p, plugin.convertPath(TConfigPath.SETTINGS_SERVER_FALLBACK).toString());
+                //p.kickPlayer(plugin.getPrefix() + "§eDas Spiel ist zuende!");
+            }
             Bukkit.reload();
         }
     }
