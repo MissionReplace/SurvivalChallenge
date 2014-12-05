@@ -362,10 +362,14 @@ public class MapCommands implements CommandExecutor
                     p.sendMessage(plugin.getPrefix() + "§e/sc help");
                     p.sendMessage(plugin.getPrefix() + "§e/sc addarena <name> <displayname> <builder> <vote-item-id> <world>");
                     p.sendMessage(plugin.getPrefix() + "§e/sc delarena <arena>");
+                    p.sendMessage(plugin.getPrefix() + "§e/sc addspawn <arena>");
+                    p.sendMessage(plugin.getPrefix() + "§e/sc adddmspawn <arena>");
                     p.sendMessage(plugin.getPrefix() + "§e/sc sethead <pos>");
                     p.sendMessage(plugin.getPrefix() + "§e/sc check <arena>");
                     p.sendMessage(plugin.getPrefix() + "§e/sc setlobby");
                     p.sendMessage(plugin.getPrefix() + "§e/sc cbackup");
+                    p.sendMessage(plugin.getPrefix() + "§e/modul");
+                    p.sendMessage(plugin.getPrefix() + "§e/stats");
                     return true;
                 }
             }
